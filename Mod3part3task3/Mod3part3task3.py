@@ -1,46 +1,26 @@
 num_list = [56, 9, 11, 2, 35, 45]
 new_num_list = []
 
-
-def max_num():
+def decimal(num_list):
     for i in range(0, len(num_list)):
-        for j in range(0, len(num_list)):
-            if num_list[i] == num_list[j]:
-                print(num_list[i], num_list[j])
-                print(new_num_list)
-                break
-            if num_list[i] < 10 < num_list[j]:
-                new_num = num_list[j]
-                while new_num >= 10:
-                    new_num //= 10
-                if new_num > num_list[i]:
-                    new_num_list.append(num_list[j])
-                elif new_num < num_list[i]:
-                    new_num_list.append(num_list[i])
-                print(num_list[i], num_list[j])
-                print(new_num_list)
-                break
-            elif num_list[i] > 10 > num_list[j]:
-                new_num = num_list[i]
-                while new_num >= 10:
-                    new_num //= 10
-                if new_num > num_list[j]:
-                    new_num_list.append(num_list[i])
-                elif new_num < num_list[j]:
-                    new_num_list.append(num_list[j])
-                print(num_list[i], num_list[j])
-                print(new_num_list)
-                break
-            elif (num_list[i] <= 10 and num_list[j] <= 10) or (num_list[i] > 10 and num_list[j] > 10):
-                if num_list[i] > num_list[j]:
-                    new_num_list.append(num_list[i])
-                elif num_list[i] < num_list[j]:
-                    new_num_list.append(num_list[j])
-                print(num_list[i], num_list[j])
-                print(new_num_list)
-                break
-    print(new_num_list)
+        new = num_list[i]
+        if new>10:
+            while new>10:
+                new = new // 10
+            new_num_list.append(new)
+        else: new_num_list.append(new)
 
 
-max_num()
+def max_num(new_num_list, num_list):
+    max_num_list = []
+    while any(x>0 for x in new_num_list):
+        i = new_num_list.index(max(new_num_list))
+        max_num_list.append(num_list[i])
+        new_num_list[i] = 0
+    max_num = int(''.join(map(str,max_num_list)))
+    print(max_num)
+
+
+decimal(num_list)
+max_num(new_num_list, num_list)
 
